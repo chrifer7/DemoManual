@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DemoManual.View.Properties;
@@ -13,9 +15,23 @@ namespace DemoManual.View
         //public SuperToolTip SuperToolTipDemo { get; set; }
 
 		private ToolTipContent toolTip;
-		private ToolTipStatus toolTipStatus;
+		private long _toolTipStatus;
 
 		private WebForm webForm;
+
+		public ToolTipStatus ToolTipStatus
+		{
+			get
+			{
+				// Use Interlocked.Read to safely read the _toolTipStatus field
+				return (ToolTipStatus)Interlocked.Read(ref _toolTipStatus);
+			}
+			set
+			{
+				// Use Interlocked.Exchange to safely set the _toolTipStatus field
+				Interlocked.Exchange(ref _toolTipStatus, (long)value);
+			}
+		}
 
 		public MainForm()
         {
@@ -26,7 +42,7 @@ namespace DemoManual.View
 
         private async Task TogleToolTipAsync(Control control, string textContent = "", string linkText = "", string linkFileName = "") 
         {
-			switch (toolTipStatus) 
+			switch (ToolTipStatus) 
 			{
 				case ToolTipStatus.Hide:
 					SetAndShowToolTip(control, textContent, linkText, linkFileName);
@@ -39,11 +55,11 @@ namespace DemoManual.View
 
 
 				case ToolTipStatus.Showing:
-					toolTipStatus = ToolTipStatus.Waiting;
+					ToolTipStatus = ToolTipStatus.Waiting;
 					await Task.Delay(3000);
-					if (toolTipStatus == ToolTipStatus.Waiting) {
+					if (ToolTipStatus == ToolTipStatus.Waiting) {
 						interactiveToolTip1.Hide();
-						toolTipStatus = ToolTipStatus.Hide;
+						ToolTipStatus = ToolTipStatus.Hide;
 					}					
 					break;
 			}
@@ -58,7 +74,7 @@ namespace DemoManual.View
 
 			// position the tooltip with its stem towards the right end of the button
 			interactiveToolTip1.Show(toolTip, control, control.Width - 16, 0);
-			toolTipStatus = ToolTipStatus.Showing;
+			ToolTipStatus = ToolTipStatus.Showing;
 		}
 
 		private void InitializeInteractiveToolTip()
@@ -74,9 +90,20 @@ namespace DemoManual.View
 
 				if (!string.IsNullOrWhiteSpace(linkFileName))
 				{
-					string curDir = Directory.GetCurrentDirectory();
-					webForm.webBrowser.Url = new Uri(String.Format("file:///{0}/Manual/{1}", curDir, linkFileName));
-					webForm.Show();
+					if (webForm is null)
+						webForm = new WebForm();
+
+					try 
+					{
+						string curDir = Directory.GetCurrentDirectory();
+						webForm.webBrowser.Url = new Uri(String.Format("file:///{0}/Manual/{1}", curDir, linkFileName));
+						webForm.Show();
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex.ToString());
+					}
+					
 				}
 			};
 		}

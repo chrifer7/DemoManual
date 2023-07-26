@@ -47,6 +47,7 @@
 			this.Controls.Add(this.webBrowser);
 			this.Name = "WebForm";
 			this.Text = "Web content";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WebForm_FormClosing);
 			this.ResumeLayout(false);
 
 		}
