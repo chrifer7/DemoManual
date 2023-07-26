@@ -5,7 +5,9 @@ namespace ToolTip
     // a very simple Control to be used as the content of the InteractiveToolTip
     public partial class ToolTipContent : UserControl
     {
-        public ToolTipContent()
+        public string LinkFileName { get; set; }
+
+		public ToolTipContent()
         {
             InitializeComponent();
         }

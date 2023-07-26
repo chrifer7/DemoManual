@@ -70,29 +70,29 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(156, 33);
+			this.button3.Location = new System.Drawing.Point(282, 33);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(75, 23);
 			this.button3.TabIndex = 4;
-			this.button3.Text = "EDIT";
+			this.button3.Text = "DELETE";
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.MouseEnter += new System.EventHandler(this.button3_MouseEnter);
 			this.button3.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(292, 33);
+			this.button2.Location = new System.Drawing.Point(155, 33);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 2;
-			this.button2.Text = "REMOVE";
+			this.button2.Text = "EDIT";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.MouseEnter += new System.EventHandler(this.button2_MouseEnter);
 			this.button2.MouseLeave += new System.EventHandler(this.button2_MouseLeave);
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(411, 33);
+			this.button4.Location = new System.Drawing.Point(409, 33);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(75, 23);
 			this.button4.TabIndex = 5;

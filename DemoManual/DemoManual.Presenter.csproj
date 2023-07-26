@@ -74,9 +74,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ManualTest.html" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DemoManual.Model\DemoManual.Model.csproj">
       <Project>{43E79B7A-FC40-4B54-A62F-8C8D6EA1E63C}</Project>
       <Name>DemoManual.Model</Name>
