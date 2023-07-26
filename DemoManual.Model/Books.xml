@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Book>
+		<Title>The Great Gatsby</Title>
+		<Author>F. Scott Fitzgerald</Author>
+		<Year>1925</Year>
+		<ISBN>978-0743273565</ISBN>
+	</Book>
+	<Book>
+		<Title>To Kill a Mockingbird</Title>
+		<Author>Harper Lee</Author>
+		<Year>1960</Year>
+		<ISBN>978-0061120084</ISBN>
+	</Book>
+	<Book>
+		<Title>1984</Title>
+		<Author>George Orwell</Author>
+		<Year>1949</Year>
+		<ISBN>978-0451524935</ISBN>
+	</Book>
+	<Book>
+		<Title>Pride and Prejudice</Title>
+		<Author>Jane Austen</Author>
+		<Year>1813</Year>
+		<ISBN>978-0141439518</ISBN>
+	</Book>
+	<Book>
+		<Title>The Catcher in the Rye</Title>
+		<Author>J.D. Salinger</Author>
+		<Year>1951</Year>
+		<ISBN>978-0316769488</ISBN>
+	</Book>
+	<Book>
+		<Title>The Lord of the Rings</Title>
+		<Author>J.R.R. Tolkien</Author>
+		<Year>1954</Year>
+		<ISBN>978-0618640157</ISBN>
+	</Book>
+	<Book>
+		<Title>Harry Potter and the Sorcerer's Stone</Title>
+		<Author>J.K. Rowling</Author>
+		<Year>1997</Year>
+		<ISBN>978-0590353403</ISBN>
+	</Book>
+	<Book>
+		<Title>To the Lighthouse</Title>
+		<Author>Virginia Woolf</Author>
+		<Year>1927</Year>
+		<ISBN>978-0156907392</ISBN>
+	</Book>
+	<Book>
+		<Title>Brave New World</Title>
+		<Author>Aldous Huxley</Author>
+		<Year>1932</Year>
+		<ISBN>978-0060850524</ISBN>
+	</Book>
+	<Book>
+		<Title>Crime and Punishment</Title>
+		<Author>Fyodor Dostoevsky</Author>
+		<Year>1866</Year>
+		<ISBN>978-0486415871</ISBN>
+	</Book>
+</ArrayOfBook>
