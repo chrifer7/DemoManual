@@ -30,7 +30,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.Link = new System.Windows.Forms.LinkLabel();
-			this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
+			//this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
 			this.RichContent = new System.Windows.Forms.RichTextBox();
 			this.SuspendLayout();
 			// 
@@ -71,7 +71,7 @@
 
         #endregion
         public System.Windows.Forms.LinkLabel Link;
-		private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
+		//private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
 		public System.Windows.Forms.RichTextBox RichContent;
 	}
 }

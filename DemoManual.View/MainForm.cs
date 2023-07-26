@@ -4,14 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DemoManual.View.Properties;
-using Syncfusion.Windows.Forms.Tools;
 using ToolTip;
 
 namespace DemoManual.View
 {
 	public partial class MainForm : Form
     {
-        public SuperToolTip SuperToolTipDemo { get; set; }
+        //public SuperToolTip SuperToolTipDemo { get; set; }
 
 		private ToolTipContent toolTip;
 		private ToolTipStatus toolTipStatus;
@@ -81,39 +80,6 @@ namespace DemoManual.View
 				}
 			};
 		}
-
-		//private void InitializeToolTips()
-  //      {
-  //          this.SuperToolTipDemo = new Syncfusion.Windows.Forms.Tools.SuperToolTip(this);
-
-  //          SuperToolTipDemo.VisualStyle = Syncfusion.Windows.Forms.Tools.SuperToolTip.Appearance.Office2016Colorful;
-  //          SuperToolTipDemo.Style = Syncfusion.Windows.Forms.Tools.SuperToolTip.SuperToolTipStyle.Balloon;
-            
-  //          SuperToolTipDemo.InitialDelay = 500;
-  //          SuperToolTipDemo.ToolTipDuration = 30;
-
-  //          //Adding ToolTip Header Item
-  //          ToolTipInfo toolTipInfo1 = new Syncfusion.Windows.Forms.Tools.ToolTipInfo();
-  //          toolTipInfo1.Header.Text = "Add demo text";
-  //          toolTipInfo1.Header.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-  //          toolTipInfo1.Footer.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-  //          toolTipInfo1.Footer.ImageScalingSize = new System.Drawing.Size(16, 16);
-
-  //          ToolTipInfo toolTipInfo2 = new Syncfusion.Windows.Forms.Tools.ToolTipInfo();
-  //          toolTipInfo2.Header.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-  //          toolTipInfo2.Footer.Size = new System.Drawing.Size(400, 350);
-  //          toolTipInfo2.Footer.RenderHtml = true;
-  //          toolTipInfo2.Footer.Text = "<ul><li>List Item</li><li>Detail demo text for demo</li></ul><a href='https://www.google.com' >Click me</a>";
-  //          //toolTipInfo2.Separator = true;
-
-  //          toolTipInfo2.Footer.Image = ((System.Drawing.Image)(Resources.image1_jpg));
-
-  //          //Associating SuperToolTip for ToolStripTabItem
-  //          SuperToolTipDemo.SetToolTip(this.button1, toolTipInfo1);
-
-            
-  //          SuperToolTipDemo.SetToolTip(this.button3, toolTipInfo2);
-  //      }
 
         private void Form1_Load(object sender, EventArgs e)
         {
