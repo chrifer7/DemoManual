@@ -12,7 +12,7 @@ namespace DemoManual.Model
         public string Title { get; set; }
         public string Author { get; set; }
         public int Year { get; set; }
-        public string ISBN { get; set; }
+        public string Isbn { get; set; }
 
         // Constructors
         public Book()
@@ -25,7 +25,7 @@ namespace DemoManual.Model
             Title = title;
             Author = author;
             Year = year;
-            ISBN = isbn;
+            Isbn = isbn;
         }
 
         // Methods
@@ -34,7 +34,7 @@ namespace DemoManual.Model
             Console.WriteLine("Title: " + Title);
             Console.WriteLine("Author: " + Author);
             Console.WriteLine("Year: " + Year);
-            Console.WriteLine("ISBN: " + ISBN);
+            Console.WriteLine("ISBN: " + Isbn);
         }
     }
 

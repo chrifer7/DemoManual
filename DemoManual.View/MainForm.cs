@@ -12,12 +12,11 @@ namespace DemoManual.View
 {
 	public partial class MainForm : Form
     {
-        //public SuperToolTip SuperToolTipDemo { get; set; }
 
-		private ToolTipContent toolTip;
+		private ToolTipContent _toolTip;
 		private long _toolTipStatus;
 
-		private WebForm webForm;
+		private WebForm _webForm;
 
 		public ToolTipStatus ToolTipStatus
 		{
@@ -37,7 +36,7 @@ namespace DemoManual.View
         {
             InitializeComponent();
 			InitializeInteractiveToolTip();
-			webForm = new WebForm();
+			_webForm = new WebForm();
 		}
 
         private async Task TogleToolTipAsync(Control control, string textContent = "", string linkText = "", string linkFileName = "") 
@@ -67,37 +66,42 @@ namespace DemoManual.View
 
 		private void SetAndShowToolTip(Control control, string textContent, string linkText, string linkFileName)
 		{
-			//Set content
-			if (!string.IsNullOrWhiteSpace(textContent)) toolTip.RichContent.Text = textContent;
-			if (!string.IsNullOrWhiteSpace(linkText)) toolTip.Link.Text = linkText;
-			if (!string.IsNullOrWhiteSpace(linkFileName)) toolTip.LinkFileName = linkFileName;
-
 			// position the tooltip with its stem towards the right end of the button
-			interactiveToolTip1.Show(toolTip, control, control.Width - 16, 0);
+			interactiveToolTip1.Show(_toolTip, control, control.Width - 16, 0);
+
+			//Set content
+			if (!string.IsNullOrWhiteSpace(textContent)) _toolTip.RichContent.Text = textContent;
+			if (!string.IsNullOrWhiteSpace(linkText)) _toolTip.Link.Text = linkText;
+			if (!string.IsNullOrWhiteSpace(linkFileName)) _toolTip.LinkFileName = linkFileName;
+			
+			//show
 			ToolTipStatus = ToolTipStatus.Showing;
 		}
 
 		private void InitializeInteractiveToolTip()
 		{
-			toolTip = new ToolTipContent();
+			_toolTip = new ToolTipContent();
 
 			// we want the tooltip's background colour to show through
-			toolTip.BackColor = Color.Transparent;
+			_toolTip.BackColor = Color.Transparent;
 
-			toolTip.Link.LinkClicked += delegate (object sender, LinkLabelLinkClickedEventArgs e)
+			_toolTip.Link.LinkClicked += delegate (object sender, LinkLabelLinkClickedEventArgs e)
 			{
+				//Hide tooltip
+				interactiveToolTip1.Hide();
+
 				var linkFileName = ((ToolTipContent)((Control)sender).Parent).LinkFileName;
 
 				if (!string.IsNullOrWhiteSpace(linkFileName))
 				{
-					if (webForm is null)
-						webForm = new WebForm();
+					if (_webForm is null)
+						_webForm = new WebForm();
 
 					try 
 					{
 						string curDir = Directory.GetCurrentDirectory();
-						webForm.webBrowser.Url = new Uri(String.Format("file:///{0}/Manual/{1}", curDir, linkFileName));
-						webForm.Show();
+						_webForm.webBrowser.Url = new Uri(String.Format("file:///{0}/Manual/{1}", curDir, linkFileName));
+						_webForm.Show();
 					}
 					catch (Exception ex)
 					{

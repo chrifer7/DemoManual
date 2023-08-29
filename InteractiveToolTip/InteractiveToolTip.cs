@@ -7,7 +7,23 @@
 //
 // InteractiveToolTip is published under the terms of the Code Project Open License.
 // http://www.codeproject.com/info/cpol10.aspx
-//
+#pragma warning disable S125
+/*	Preamble
+
+		This License governs Your use of the Work. This License is intended to allow developers to use the 
+		Source Code and Executable Files provided as part of the Work in any application in any form.
+
+		The main points subject to the terms of the License are:
+			- Source Code and Executable Files can be used in commercial applications;
+			- Source Code and Executable Files can be redistributed; and
+			- Source Code can be modified to create derivative works.
+			- No claim of suitability, guarantee, or any warranty whatsoever is provided. The software is provided "as-is".
+			- The Article(s) accompanying the Work may not be distributed or republished without the Author's consent
+
+		This License is entered between You, the individual or other entity reading or otherwise making use of the Work 
+		licensed pursuant to this License and the individual or other entity which offers the Work under the terms of this License ("Author").
+*/
+#pragma warning restore S125
 
 #endregion License
 
@@ -79,32 +95,32 @@ namespace Digitalis.GUI.Controls
 
         private sealed class Win32
         {
-            public const string TOOLTIPS_CLASS         = "tooltips_class32";
-            public const int TTS_ALWAYSTIP             = 0x01;
-            public const int TTS_NOFADE                = 0x10;
-            public const int TTS_NOANIMATE             = 0x20;
-            public const int TTS_BALLOON               = 0x40;
-            public const int TTF_IDISHWND              = 0x0001;
-            public const int TTF_CENTERTIP             = 0x0002;
-            public const int TTF_TRACK                 = 0x0020;
-            public const int TTF_TRANSPARENT           = 0x0100;
-            public const int WM_SETFONT                = 0x30;
-            public const int WM_GETFONT                = 0x31;
-            public const int WM_PRINTCLIENT            = 0x318;
-            public const int WM_USER                   = 0x0400;
-            public const int TTM_TRACKACTIVATE         = WM_USER + 17;
-            public const int TTM_TRACKPOSITION         = WM_USER + 18;
-            public const int TTM_SETMAXTIPWIDTH        = WM_USER + 24;
-            public const int TTM_GETBUBBLESIZE         = WM_USER + 30;
-            public const int TTM_ADDTOOL               = WM_USER + 50;
-            public const int TTM_DELTOOL               = WM_USER + 51;
-            public const int SWP_NOSIZE                = 0x0001;
-            public const int SWP_NOACTIVATE            = 0x0010;
-            public const int SWP_NOOWNERZORDER         = 0x200;
-            public readonly static IntPtr HWND_TOPMOST = new IntPtr(-1);
+            public const string TooltipsClass         = "tooltips_class32";
+            public const int TtsAlwaystip             = 0x01;
+            public const int TtsNofade                = 0x10;
+            public const int TtsNoanimate             = 0x20;
+            public const int TtsBalloon               = 0x40;
+            public const int TtfIdishwnd              = 0x0001;
+            public const int TtfCentertip             = 0x0002;
+            public const int TtfTrack                 = 0x0020;
+            public const int TtfTransparent           = 0x0100;
+            public const int WmSetfont                = 0x30;
+            public const int WmGetfont                = 0x31;
+            public const int WmPrintclient            = 0x318;
+            public const int WmUser                   = 0x0400;
+            public const int TtmTrackactivate         = WmUser + 17;
+            public const int TtmTrackposition         = WmUser + 18;
+            public const int TtmSetmaxtipwidth        = WmUser + 24;
+            public const int TtmGetbubblesize         = WmUser + 30;
+            public const int TtmAddtool               = WmUser + 50;
+            public const int TtmDeltool               = WmUser + 51;
+            public const int SwpNosize                = 0x0001;
+            public const int SwpNoactivate            = 0x0010;
+            public const int SwpNoownerzorder         = 0x200;
+            public readonly static IntPtr HwndTopmost = new IntPtr(-1);
 
             [StructLayout(LayoutKind.Sequential)]
-            public struct RECT
+            public struct Rect
             {
                 public int left;
                 public int top;
@@ -113,13 +129,13 @@ namespace Digitalis.GUI.Controls
             }
 
             [StructLayout(LayoutKind.Sequential)]
-            public struct TOOLINFO
+            public struct Toolinfo
             {
                 public int cbSize;
                 public int uFlags;
                 public IntPtr hwnd;
                 public IntPtr uId;
-                public RECT rect;
+                public Rect rect;
                 public IntPtr hinst;
 
                 [MarshalAs(UnmanagedType.LPTStr)]
@@ -129,26 +145,26 @@ namespace Digitalis.GUI.Controls
             }
 
             [StructLayout(LayoutKind.Sequential)]
-            public struct SIZE
+            public struct Size
             {
                 public int cx;
                 public int cy;
             }
 
             [DllImport("User32", SetLastError = true)]
-            public static extern int GetWindowRect(IntPtr hWnd, ref RECT lpRect);
+            public static extern int GetWindowRect(IntPtr hWnd, ref Rect lpRect);
 
             [DllImport("User32", SetLastError = true)]
-            public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, ref TOOLINFO lParam);
+            public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, ref Toolinfo lParam);
 
             [DllImport("User32", SetLastError = true)]
-            public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, out RECT lParam);
+            public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, out Rect lParam);
 
             [DllImport("User32", SetLastError = true)]
-            public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+            public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
             [DllImport("User32", SetLastError = true)]
-            public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
+            public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, int uFlags);
 
             [DllImport("User32", SetLastError = true)]
             public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
@@ -167,7 +183,7 @@ namespace Digitalis.GUI.Controls
             protected override void OnPaintBackground(PaintEventArgs e)
             {
                 // paint the balloon
-                Win32.SendMessage(_toolTipHwnd, Win32.WM_PRINTCLIENT, (int)e.Graphics.GetHdc(), 0);
+                Win32.SendMessage(_toolTipHwnd, Win32.WmPrintclient, (int)e.Graphics.GetHdc(), 0);
             }
         }
 
@@ -176,31 +192,31 @@ namespace Digitalis.GUI.Controls
             #region Internals
 
             // the distance from the edge of the balloon to the edge of the stem
-            private const int StemInset = 16;
-            private static StringFormat StringFormat = new StringFormat(StringFormat.GenericTypographic) { FormatFlags = StringFormatFlags.MeasureTrailingSpaces };
+            private const int STEM_INSET = 16;
+            private static StringFormat _stringFormat = new StringFormat(StringFormat.GenericTypographic) { FormatFlags = StringFormatFlags.MeasureTrailingSpaces };
 
             private ContentPanel _contentPanel;
-            private Win32.TOOLINFO _toolInfo;
+            private Win32.Toolinfo _toolInfo;
             private bool _mouseOverToolTip;
 
-            private Win32.TOOLINFO CreateTool(string contentSpacing, IWin32Window window, StemPosition stemPosition)
+            private Win32.Toolinfo CreateTool(string contentSpacing, IWin32Window window, StemPosition stemPosition)
             {
-                Win32.TOOLINFO ti = new Win32.TOOLINFO();
+                Win32.Toolinfo ti = new Win32.Toolinfo();
 
                 ti.cbSize   = Marshal.SizeOf(ti);
-                ti.uFlags   = Win32.TTF_IDISHWND | Win32.TTF_TRACK | Win32.TTF_TRANSPARENT;
+                ti.uFlags   = Win32.TtfIdishwnd | Win32.TtfTrack | Win32.TtfTransparent;
                 ti.uId      = window.Handle;
                 ti.hwnd     = window.Handle;
                 ti.lpszText = contentSpacing;
 
                 if (StemPosition.BottomCentre == stemPosition || StemPosition.TopCentre == stemPosition)
-                    ti.uFlags |= Win32.TTF_CENTERTIP;
+                    ti.uFlags |= Win32.TtfCentertip;
 
-                if (0 == Win32.SendMessage(Handle, Win32.TTM_ADDTOOL, 0, ref ti))
+                if (0 == Win32.SendMessage(Handle, Win32.TtmAddtool, 0, ref ti))
                     throw new Exception();
 
                 // enable multi-line text-layout
-                Win32.SendMessage(Handle, Win32.TTM_SETMAXTIPWIDTH, 0, SystemInformation.MaxWindowTrackSize.Width);
+                Win32.SendMessage(Handle, Win32.TtmSetmaxtipwidth, 0, SystemInformation.MaxWindowTrackSize.Width);
 
                 return ti;
             }
@@ -268,17 +284,17 @@ namespace Digitalis.GUI.Controls
             {
                 Rectangle toolTipBounds  = new Rectangle();
                 Size toolTipSize         = GetToolTipWindowSize(contentSpacing);
-                Win32.RECT windowBounds = new Win32.RECT();
+                Win32.Rect windowBounds = new Win32.Rect();
 
                 Win32.GetWindowRect(window.Handle, ref windowBounds);
                 x += windowBounds.left;
 
                 if (StemPosition.TopLeft == stemPosition || StemPosition.BottomLeft == stemPosition)
-                    toolTipBounds.X = x - StemInset;
+                    toolTipBounds.X = x - STEM_INSET;
                 else if (StemPosition.TopCentre == stemPosition || StemPosition.BottomCentre == stemPosition)
                     toolTipBounds.X = x - (toolTipSize.Width / 2);
                 else
-                    toolTipBounds.X = x - toolTipSize.Width + StemInset;
+                    toolTipBounds.X = x - toolTipSize.Width + STEM_INSET;
 
                 if (StemPosition.TopLeft == stemPosition || StemPosition.TopCentre == stemPosition || StemPosition.TopRight == stemPosition)
                     toolTipBounds.Y = windowBounds.bottom - y;
@@ -293,30 +309,30 @@ namespace Digitalis.GUI.Controls
 
             private Size GetToolTipWindowSize(string contentSpacing)
             {
-                Win32.TOOLINFO ti = new Win32.TOOLINFO();
+                Win32.Toolinfo ti = new Win32.Toolinfo();
                 ti.cbSize          = Marshal.SizeOf(ti);
-                ti.uFlags          = Win32.TTF_TRACK;
+                ti.uFlags          = Win32.TtfTrack;
                 ti.lpszText        = contentSpacing;
 
-                if (0 == Win32.SendMessage(Handle, Win32.TTM_ADDTOOL, 0, ref ti))
+                if (0 == Win32.SendMessage(Handle, Win32.TtmAddtool, 0, ref ti))
                     throw new Exception();
 
                 // enable multi-line text-layout
-                Win32.SendMessage(Handle, Win32.TTM_SETMAXTIPWIDTH, 0, SystemInformation.MaxWindowTrackSize.Width);
-                Win32.SendMessage(Handle, Win32.TTM_TRACKACTIVATE, 1, ref ti);
+                Win32.SendMessage(Handle, Win32.TtmSetmaxtipwidth, 0, SystemInformation.MaxWindowTrackSize.Width);
+                Win32.SendMessage(Handle, Win32.TtmTrackactivate, 1, ref ti);
 
-                Win32.RECT rect = new Win32.RECT();
+                Win32.Rect rect = new Win32.Rect();
                 Win32.GetWindowRect(Handle, ref rect);
 
-                Win32.SendMessage(Handle, Win32.TTM_TRACKACTIVATE, 0, ref ti);
-                Win32.SendMessage(Handle, Win32.TTM_DELTOOL, 0, ref ti);
+                Win32.SendMessage(Handle, Win32.TtmTrackactivate, 0, ref ti);
+                Win32.SendMessage(Handle, Win32.TtmDeltool, 0, ref ti);
 
                 return new Size(rect.right - rect.left, rect.bottom - rect.top);
             }
 
             private void DoLayout(IWin32Window window, Control content, StemPosition stemPosition, ref Rectangle toolTipBounds)
             {
-                int bubbleSize   = Win32.SendMessage(Handle, Win32.TTM_GETBUBBLESIZE, 0, ref _toolInfo);
+                int bubbleSize   = Win32.SendMessage(Handle, Win32.TtmGetbubblesize, 0, ref _toolInfo);
                 int bubbleWidth  = bubbleSize & 0xFFFF;
                 int bubbleHeight = bubbleSize >> 16;
 
@@ -340,7 +356,7 @@ namespace Digitalis.GUI.Controls
                 _contentPanel.Height = toolTipBounds.Height;
                 _contentPanel.Controls.Add(content);
 
-                Win32.SetWindowPos(Handle, Win32.HWND_TOPMOST, toolTipBounds.X, toolTipBounds.Y, 0, 0, Win32.SWP_NOACTIVATE | Win32.SWP_NOSIZE | Win32.SWP_NOOWNERZORDER);
+                Win32.SetWindowPos(Handle, Win32.HwndTopmost, toolTipBounds.X, toolTipBounds.Y, 0, 0, Win32.SwpNoactivate | Win32.SwpNosize | Win32.SwpNoownerzorder);
             }
 
             private string GetSizingText(Control content)
@@ -349,11 +365,11 @@ namespace Digitalis.GUI.Controls
                 // text-content - so we must fake a string with approximately the same dimensions when rendered as our content
                 StringBuilder sb  = new StringBuilder();
                 Graphics graphics = Graphics.FromHwnd(Handle);
-                Font font         = Font.FromHfont((IntPtr)Win32.SendMessage(Handle, Win32.WM_GETFONT, 0, 0));
+                Font font         = Font.FromHfont((IntPtr)Win32.SendMessage(Handle, Win32.WmGetfont, 0, 0));
 
                 // use a small font to improve precision
                 font = new Font(font.FontFamily, 1.0f);
-                Win32.SendMessage(Handle, Win32.WM_SETFONT, (int)font.ToHfont(), 1);
+                Win32.SendMessage(Handle, Win32.WmSetfont, (int)font.ToHfont(), 1);
 
                 Size size = TextRenderer.MeasureText(" ", font);
                 int rows  = (content.Height + size.Height - 1) / size.Height;
@@ -384,17 +400,17 @@ namespace Digitalis.GUI.Controls
 
             public ToolTipWindow(Control content, IWin32Window window, int x, int y, StemPosition stemPosition, bool useAnimation, bool useFading)
             {
-                Window = window;
+                this.window = window;
 
                 CreateParams createParams = new CreateParams();
-                createParams.ClassName = Win32.TOOLTIPS_CLASS;
-                createParams.Style = Win32.TTS_ALWAYSTIP | Win32.TTS_BALLOON;
+                createParams.ClassName = Win32.TooltipsClass;
+                createParams.Style = Win32.TtsAlwaystip | Win32.TtsBalloon;
 
                 if (!useAnimation)
-                    createParams.Style |= Win32.TTS_NOANIMATE;
+                    createParams.Style |= Win32.TtsNoanimate;
 
                 if (!useFading)
-                    createParams.Style |= Win32.TTS_NOFADE;
+                    createParams.Style |= Win32.TtsNofade;
 
                 CreateHandle(createParams);
 
@@ -402,39 +418,39 @@ namespace Digitalis.GUI.Controls
                 string contentSpacing = GetSizingText(content);
 
                 // this is where the caller would like us to be
-                Rectangle toolTipBounds = CalculateToolTipLocation(contentSpacing, Window, x, y, stemPosition);
-                Screen currentScreen    = Screen.FromHandle(Window.Handle);
+                Rectangle toolTipBounds = CalculateToolTipLocation(contentSpacing, this.window, x, y, stemPosition);
+                Screen currentScreen    = Screen.FromHandle(this.window.Handle);
                 Rectangle screenBounds  = currentScreen.WorkingArea;
 
                 stemPosition = AdjustStemPosition(stemPosition, ref toolTipBounds, ref screenBounds);
 
                 // and this is where we'll actually end up
-                toolTipBounds = CalculateToolTipLocation(contentSpacing, Window, x, y, stemPosition);
+                toolTipBounds = CalculateToolTipLocation(contentSpacing, this.window, x, y, stemPosition);
                 toolTipBounds.X = Math.Max(0, toolTipBounds.X);
                 toolTipBounds.Y = Math.Max(0, toolTipBounds.Y);
 
                 // build the tooltip window
-                _toolInfo = CreateTool(contentSpacing, Window, stemPosition);
+                _toolInfo = CreateTool(contentSpacing, this.window, stemPosition);
 
                 // initial position to force the stem into the correct orientation
                 int initialX = screenBounds.X;
                 int initialY = screenBounds.Y;
 
                 if (StemPosition.TopLeft == stemPosition || StemPosition.BottomLeft == stemPosition)
-                    initialX += StemInset;
+                    initialX += STEM_INSET;
                 else if (StemPosition.TopCentre == stemPosition || StemPosition.BottomCentre == stemPosition)
                     initialX += screenBounds.Width / 2;
                 else
-                    initialX += screenBounds.Width - StemInset;
+                    initialX += screenBounds.Width - STEM_INSET;
 
                 if (StemPosition.BottomLeft == stemPosition || StemPosition.BottomCentre == stemPosition || StemPosition.BottomRight == stemPosition)
                     initialY += screenBounds.Height;
 
-                Win32.SendMessage(Handle, Win32.TTM_TRACKPOSITION, 0, (initialY << 16) | initialX);
+                Win32.SendMessage(Handle, Win32.TtmTrackposition, 0, (initialY << 16) | initialX);
 
                 // and finally display it
-                Win32.SendMessage(Handle, Win32.TTM_TRACKACTIVATE, 1, ref _toolInfo);
-                DoLayout(Window, content, stemPosition, ref toolTipBounds);
+                Win32.SendMessage(Handle, Win32.TtmTrackactivate, 1, ref _toolInfo);
+                DoLayout(this.window, content, stemPosition, ref toolTipBounds);
 
                 _contentPanel.MouseEnter += delegate(object sender, EventArgs e)
                 {
@@ -470,8 +486,8 @@ namespace Digitalis.GUI.Controls
             {
                 if (disposing)
                 {
-                    Win32.SendMessage(Handle, Win32.TTM_TRACKACTIVATE, 0, ref _toolInfo);
-                    Win32.SendMessage(Handle, Win32.TTM_DELTOOL, 0, ref _toolInfo);
+                    Win32.SendMessage(Handle, Win32.TtmTrackactivate, 0, ref _toolInfo);
+                    Win32.SendMessage(Handle, Win32.TtmDeltool, 0, ref _toolInfo);
 
                     if (null != _contentPanel)
                     {
@@ -487,7 +503,7 @@ namespace Digitalis.GUI.Controls
 
             #region API
 
-            public IWin32Window Window;
+            public IWin32Window window;
 
             public event EventHandler MouseEnter;
 
@@ -740,7 +756,7 @@ namespace Digitalis.GUI.Controls
             if (null != toolTip)
             {
                 _currentToolTip = null;
-                window = toolTip.Window;
+                window = toolTip.window;
                 toolTip.Dispose();
 
                 if (null != ToolTipHidden)
